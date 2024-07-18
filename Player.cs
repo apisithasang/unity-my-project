@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float speed = 30;
     private Vector3 MoveDirection;
     
+    // class animator
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -21,13 +22,14 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(character.isGrounded){
-
+            // animation walk set false
             anim.SetBool("IsWalk",false);
             MoveDirection = new Vector3(Input.GetAxis("Horizontal"),0.0f,Input.GetAxis("Vertical"));
             MoveDirection *= speed;
-            
+            // animation controller
             if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
                 anim.SetBool("IsWalk",true);
+            
             }
             
             character.Move(MoveDirection*Time.deltaTime);
