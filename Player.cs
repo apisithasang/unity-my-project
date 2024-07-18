@@ -29,8 +29,32 @@ public class Player : MonoBehaviour
         if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
             anima.SetBool("IsWalk",true);
         }
-
+        // Rotation Player Function
+        Rotate();
         chr.Move(MD * Time.deltaTime);
        }
+    }
+
+
+    void Rotate(){
+
+        // Rotation Player
+        if(Input.GetAxis("Horizontal") <0){
+
+            this.transform.rotation = Quaternion.Euler(0.0f,-90f,0.0f);
+        }
+
+        if(Input.GetAxis("Horizontal") >0){
+            this.transform.rotation = Quaternion.Euler(0.0f,90f,0.0f);
+        }
+
+        if(Input.GetAxis("Vertical") >0){
+            this.transform.rotation = Quaternion.Euler(0.0f,0.0f,0.0f);
+        }
+
+        if(Input.GetAxis("Vertical") <0){
+            this.transform.rotation = Quaternion.Euler(0.0f,-180f,0.0f);
+        }
+
     }
 }
