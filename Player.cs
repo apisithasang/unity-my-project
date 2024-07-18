@@ -4,37 +4,33 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private CharacterController Character;
-    public float speed = 15;
-    
-    private Vector3 MoveDirection;
+   private CharacterController chr;
+   public float speed = 1;
+   private Vector3 MD;
 
-
-    Animator anime;
+   Animator anima;
  
     // Start is called before the first frame update
  
     void Start()
     {
-        anime = GetComponent<Animator>();
-        Character = GetComponent<CharacterController>();
+        anima = GetComponent<Animator>();
+        chr = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Character.isGrounded){
-            anime.SetBool("IsWalk",false);
-            MoveDirection = new Vector3(Input.GetAxis("Horizontal"),0.0f,Input.GetAxis("Vertical"));
-            MoveDirection *= speed;
-            
-            if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
-                anime.SetBool("IsWalk",true);
-            }
-
-
-            Character.Move(MoveDirection * Time.deltaTime);
-
+       if(chr.isGrounded){
+        anima.SetBool("IsWalk",false);
+         MD = new Vector3(Input.GetAxis("Horizontal"),0.0f,Input.GetAxis("Vertical"));
+        MD *= speed;
+        
+        if(Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
+            anima.SetBool("IsWalk",true);
         }
+
+        chr.Move(MD * Time.deltaTime);
+       }
     }
 }
